@@ -1,0 +1,51 @@
+<template name="staffList">
+    <h1 class="page-header">Staff List</h1>
+    {{#autoForm schema=staffSchema id="staffList"}}
+        {{>afQuickField name='gender'}}
+
+        <button type="submit" class="btn btn-primary">View</button>
+    {{/autoForm}}
+</template>
+
+<template name="staffListReport">
+    Staff List Report
+    <!--<ul>-->
+        <!--{{#if data}}-->
+        <!--{{#each data}}-->
+        <!--<li>{{_id}} : {{name}} ({{gender}})</li>-->
+            <!--{{/each}}-->
+        <!--{{else}}-->
+    <!--<i class="fa fa-spinner fa-spin"></i> Waiting ...-->
+        <!--{{/if}}-->
+    <!--</ul>-->
+    <div calass="container">
+        <div class="row">
+            <div class="col-md-18">
+                {{#if data}}
+                    <br>
+                    <br>
+                    <table class="table table-bordered" bgcolor="blue">
+                        <thead>
+                        <tr bgcolor="#db7093">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each data}}
+                            <tr class="alert-info">
+                                <td>{{_id}}</td>
+                                <td>{{name}}</td>
+                                <td>{{gender}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                {{else}}
+                    <i class="fa fa-spinner"></i>Waiting...
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>

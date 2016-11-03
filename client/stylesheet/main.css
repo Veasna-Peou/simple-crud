@@ -1,0 +1,16 @@
+.btn-blue {
+    color: #fff;
+    background-color: lawngreen;
+    border-color: #12159E;
+}
+.btn-blue:hover {
+    /*background-color: yellow;*/
+    color: #76ff03;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #0CF10C;
+    background-color: #fff;
+}

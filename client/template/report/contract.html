@@ -1,0 +1,59 @@
+<template name="contractList">
+    <h1 class="page-header">Contract List</h1>
+    {{#autoForm schema=contractSchema id="contractList"}}
+        {{>afQuickField name='fromDate'}}
+        {{>afQuickField name='toDate'}}
+        <!--{{>afQuickField name='staffId'}}-->
+
+        <button type="submit" class="btn btn-primary">View</button>
+    {{/autoForm}}
+</template>
+
+<template name="contractListReport">
+    Contract List Report
+    <!--<ul>-->
+        <!--{{#if data}}-->
+        <!--{{#each data}}-->
+        <!--<li>{{_id}} : {{name}} ({{gender}})</li>-->
+            <!--{{/each}}-->
+        <!--{{else}}-->
+    <!--<i class="fa fa-spinner fa-spin"></i> Waiting ...-->
+        <!--{{/if}}-->
+    <!--</ul>-->
+    <div calass="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                {{#if data}}
+                    <br>
+                    <br>
+                    <table class="table table-bordered" bgcolor="blue">
+                        <thead>
+                        <tr bgcolor="#db7093">
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Staff</th>
+                            <th class="text-center">Position</th>
+                            <th class="text-center">Start Date</th>
+                            <th class="text-center">End Date</th>
+                            <th class="text-center">Salary</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each data}}
+                            <tr class="alert-info">
+                                <td>{{_id}}</td>
+                                <td>{{staffDoc.name}}</td>
+                                <td>{{position}}</td>
+                                <td>{{startDate}}</td>
+                                <td>{{endDate}}</td>
+                                <td>{{salary}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                {{else}}
+                    <i class="fa fa-spinner"></i>Waiting...
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
