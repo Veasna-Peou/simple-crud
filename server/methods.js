@@ -15,21 +15,36 @@ Meteor.methods({
 
         return data;
     },
-    contractList(param){
+    contractList: function (param) {
         Meteor._sleepForMs(2000);
-        let data = Contract.find({
+
+        let selector = {
             startDate: {
                 $gte: moment(param.fromDate).toDate(), $lte: moment(param.toDate).toDate()
             }
-        });
-        // {startDate :..., endDate:......}
+        };
 
-        let tmpData = [];
-        data.forEach(function (o) {
-            o.staffDoc = Staff.findOne(o.staffId);
-            tmpData.push(o);
-        });
+        let data = Contract.aggregate([
+            {
+                $match: selector
+            },
+            {
+                $lookup: {
+                    from: "staff",
+                    localField: "staffId",
+                    foreignField: "_id",
+                    as: "staffDoc"
+                }
+            },
+            {
+                $unwind: "$staffDoc"
+            },
+        ]);
         
-        return tmpData;
+        if (data.length > 0) {
+            return data;
+        } else {
+            return [{_id: 'No data'}];
+        }
     }
 });
